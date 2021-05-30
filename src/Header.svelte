@@ -1,6 +1,6 @@
 <div class="header">
   <img src="images/spotify-logo-png-7053.png" alt="Spotify logo" />
-  <h1>Spotify Prewrapped</h1>
+  <h1>Spotify Prewrapped!</h1>
 </div>
 
 <style>
