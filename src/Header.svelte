@@ -1,6 +1,6 @@
 <div class="header">
   <img src="images/spotify-logo-png-7053.png" alt="Spotify logo" />
-  <h1>Spotify Prewrapped!</h1>
+  <h1>Spotify Prewrapped</h1>
 </div>
 
 <style>
@@ -13,9 +13,8 @@
     position: relative;
   }
   h1 {
-    color: green;
-    text-transform: uppercase;
-    font-size: 2em;
+    color: #1ed760;
+    font-size: 3.5em;
     font-weight: 1000;
   }
   img {

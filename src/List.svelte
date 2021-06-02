@@ -60,11 +60,11 @@
   {#if collection && expanded}
     <div class="list-container" transition:slide>
       {#each collection as { name, art, info, link }, i}
-        <article class="item-info">
+        <div class="item-info">
           <div class="item-text">
             <div class="item-details">
               <h2>{i + 1}. {name}</h2>
-              <p>{info}</p>
+              <span style="white-space: pre-line">{info}</span>
               <!-- <p>{titleCase(info)}</p> -->
             </div>
           </div>
@@ -73,7 +73,7 @@
               <img class="item-img" src={art} alt={name} />
             </a>
           </div>
-        </article>
+        </div>
       {/each}
     </div>
   {/if}
@@ -81,17 +81,11 @@
 
 <style>
   .expand-btn {
-    background: #19e68c;
-    /* color: white; */
-    width: 70%;
-    font-size: 32px;
+    width: clamp(20rem, 70%, 40rem);
+    font-size: 2rem;
     font-weight: 500;
-    /* padding: 1rem; */
     margin-top: 1em;
     border-style: solid;
-    border-radius: 500px;
-    /* border-width: 5px; */
-    border-color: black;
   }
 
   .expand-btn-icon {
@@ -103,18 +97,18 @@
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    width: 70%;
+    width: clamp(20rem, 70%, 40rem);
     flex-direction: column;
   }
 
   .item-info {
-    background: yellow;
+    background: #282e2b;
     padding: 1em;
     margin: 0.25em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* height: 10em; */
+    height: 10em;
     border-style: solid;
     border-radius: 50px;
   }
@@ -123,15 +117,19 @@
     display: flex;
     text-align: left;
     width: 65%;
+    height: 100%;
+    /* margin: auto; */
   }
 
   .item-details {
-    margin: 1.5em;
+    /* margin: 1.5em; */
+    /* margin: auto; */
+    padding: 1rem;
   }
 
   .img-container {
     max-width: 40%;
-    max-height: 85%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,7 +142,8 @@
 
   .item-img {
     border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
+    width: 10rem;
+    /* max-width: 90%; */
+    /* max-height: 90%; */
   }
 </style>

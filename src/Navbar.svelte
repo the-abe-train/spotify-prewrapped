@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { token, tokenExpired } from "./stores.js";
+  import { token, tokenExpired, appUrl } from "./stores.js";
   import { slide } from "svelte/transition";
 
   let user;
@@ -69,7 +69,7 @@
             >Meet the Developer</span
           ></a
         >
-        <a href="https://spotify-prewrapped.vercel.app/" transition:slide>
+        <a href={$appUrl} transition:slide>
           <i class="fas fa-sign-out-alt" />
           <span class="welcome-option">Logout</span>
         </a>
@@ -90,14 +90,17 @@
   }
 
   .welcome-btn {
-    padding: 12px 16px;
+    /* padding: 0.35rem 0.8rem 0.35rem 0.8rem; */
+    padding: 0.5rem;
     margin: 1rem 1rem 0 1rem;
     border-radius: 1rem;
+    font-size: 1rem;
+    height: 3rem;
   }
 
   .welcome-menu {
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    background-color: #282e2b;
+    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
     width: 100%;
     z-index: 1;
     display: flex;
@@ -106,14 +109,14 @@
   }
 
   .welcome-menu a {
-    color: black;
-    padding: 12px 16px;
+    color: #1ed760;
+    padding: 0.75em;
     margin: 0.75rem 1rem 0 1rem;
     text-decoration: none;
     text-align: left;
     border-style: solid;
     border-radius: 1rem;
-    border-width: 1px;
+    border-width: 0.12em;
   }
 
   .welcome-option {

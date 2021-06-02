@@ -12,8 +12,13 @@ export const token = readable(null, function start(set) {
   set(access_token);
 
   // Reset URL so the token can't be seen in it.
-  window.history.pushState("object or string", "Title", "/");
+  // window.history.pushState("object or string", "Title", "/");
 
+})
+
+export const appUrl = readable(null, function start(set) {
+  set("https://spotify-prewrapped.vercel.app/");
+  // set("http://localhost:5000");
 })
 
 export const timeRange = writable('long_term');
