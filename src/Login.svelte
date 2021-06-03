@@ -29,8 +29,8 @@
   $: loginLink = url + params;
 </script>
 
-<div id="login">
-  {#if !$token}
+{#if !$token}
+  <div id="login">
     <a href={loginLink}>
       <button>Connect to Spotify</button>
     </a>
@@ -39,8 +39,8 @@
       <span style="padding:0.1rem">Remember me?</span>
       <input style="margin:0;" type="checkbox" bind:checked={rememberMe} />
     </label>
-  {/if}
-</div>
+  </div>
+{/if}
 
 {#if $tokenExpired}
   <section>
@@ -52,6 +52,10 @@
 {/if}
 
 <style>
+  #login {
+    margin-top: 2.5rem;
+  }
+
   .checkbox {
     display: inline-flex;
     cursor: pointer;
