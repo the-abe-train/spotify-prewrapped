@@ -12,7 +12,7 @@ export const token = readable(null, function start(set) {
   set(access_token);
 
   // Reset URL so the token can't be seen in it.
-  // window.history.pushState("object or string", "Title", "/");
+  window.history.pushState("object or string", "Title", "/");
 
 })
 
