@@ -2,10 +2,8 @@
   import Navbar from "./Navbar.svelte";
   import Header from "./Header.svelte";
   import Login from "./Login.svelte";
-  import Welcome from "./Welcome.svelte";
   import List from "./List.svelte";
   import Menu from "./Menu.svelte";
-  import Test from "./Test.svelte";
   import { timeRange, token, tokenExpired } from "./stores.js";
 
   const uppers = ["uk", "r&b", "nyc"];
@@ -68,8 +66,8 @@
   />
 </svelte:head>
 
-<Navbar />
 <main>
+  <Navbar />
   <!-- <Welcome /> -->
   <Header />
   <Login />
