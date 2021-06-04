@@ -4,6 +4,7 @@
   import Login from "./Login.svelte";
   import List from "./List.svelte";
   import Menu from "./Menu.svelte";
+  import Footer from "./Footer.svelte";
   import { timeRange, token, tokenExpired } from "./stores.js";
 
   const uppers = ["uk", "r&b", "nyc"];
@@ -83,12 +84,11 @@
     {/if}
   {/key}
 </main>
+<Footer />
 
 <style>
   main {
     text-align: center;
-    padding: 1em;
-    margin: 0 auto;
   }
 
   /* @media (min-width: 640px) {
