@@ -12,10 +12,10 @@
   <div id="title">
     <img
       id="title-img"
-      src="images/spotify-logo-png-7053.png"
+      src="images/spotify-logo.png"
       alt="Spotify logo"
     />
-    {#if iw >= 820}
+    {#if iw >= 768}
       <h1 id="title-text">Spotify Prewrapped</h1>
     {:else}
       <h1 id="title-text">Spotify <br /> Prewrapped</h1>
@@ -31,7 +31,7 @@
 
 <style>
   #header {
-    margin: 3rem 3.5rem 0rem 3.5rem;
+    margin-top: 3rem;
     clear: both;
     position: relative;
   }
@@ -41,11 +41,12 @@
     justify-content: center;
   }
   #title-text {
-    color: #1ed760;
+    color: var(--light-1);
     font-size: 3.5em;
     font-weight: 1000;
     margin-bottom: 2rem;
   }
+
   #title-img {
     width: 100px;
     height: 100px;
@@ -53,12 +54,38 @@
   }
   #subtitle {
     display: block;
-    max-width: 70%;
+    width: 40rem;
     margin: auto;
     margin-top: 0.5rem;
-    background-color: #282e2b;
+    background-color: var(--dark-2);
     padding: 1rem;
     border-radius: 1rem;
-    color: #7bcf99;
+    color: var(--light-2);
+  }
+
+  /* Tablet media query */
+  @media (max-width: 768px) and (min-width: 481px) {
+    #header {
+      margin-top: 2rem;
+    }
+    #title-text {
+      font-size: 3.5rem;
+    }
+    #subtitle {
+      width: 25rem;
+    }
+  }
+
+  /* Phone media query */
+  @media (max-width: 480px) {
+    #header {
+      margin-top: 2rem;
+    }
+    #title-text {
+      font-size: 2.5em;
+    }
+    #subtitle {
+      width: 20rem;
+    }
   }
 </style>
