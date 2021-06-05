@@ -20,13 +20,14 @@
   let rememberMe = true;
   $: params = new URLSearchParams({
     response_type: "token",
-    show_dialog: !rememberMe,
+    show_dialog: !rememberMe, // Will show up on first sign-on regardless
     client_id,
     scope,
     redirect_uri: $appUrl,
     state,
   });
   $: loginLink = url + params;
+  $: console.log(rememberMe);
 </script>
 
 {#if !$token}
@@ -35,10 +36,15 @@
       <button>Connect to Spotify</button>
     </a>
     <br />
-    <label class="checkbox">
-      <span style="padding:0.1rem">Remember me?</span>
-      <input style="margin:0;" type="checkbox" bind:checked={rememberMe} />
-    </label>
+    <div id="checkbox-container">
+      <label id="checkbox-text" for="remember-me">Remember me?</label>
+      <input
+        id="checkbox-box"
+        name="remember-me"
+        type="checkbox"
+        bind:checked={rememberMe}
+      />
+    </div>
   </div>
 {/if}
 
@@ -52,54 +58,51 @@
 {/if}
 
 <style>
+  input {
+    padding: 0;
+    margin: 0;
+  }
+
   #login {
     margin-top: 2.5rem;
   }
 
-  .checkbox {
+  #checkbox-container {
     display: inline-flex;
     cursor: pointer;
     position: relative;
     align-items: center;
   }
 
-  .checkbox > span {
-    /* color: #34495e; */
-    /* padding: 0.5rem 0.25rem; */
+  #checkbox-text {
     margin: 0 0.5rem 0 0;
   }
 
-  .checkbox > input {
+  #checkbox-box {
+    overflow: hidden;
     height: 1em;
     width: 1em;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-    appearance: none;
-    border: 1px solid #34495e;
-    border-radius: 4px;
+    margin-top: 0.15rem;
+    border: 1px solid var(--light-1);
     outline: none;
-    transition-duration: 0.3s;
-    background-color: #41b883;
+    background-color: var(--dark-2);
+    color: black;
     cursor: pointer;
+    -webkit-appearance: initial;
+    appearance: initial;
+    position: relative;
   }
 
-  .checkbox > input:checked {
-    border: 1px solid #41b883;
-    background-color: #34495e;
-  }
-
-  .checkbox > span::after + input:checked {
-    content: "\2713";
-    display: block;
-    text-align: center;
-    color: #41b883;
+  #checkbox-box:checked:after {
+    content: "\2714";
+    padding: none;
+    color: var(--light-1);
     position: absolute;
-    left: 0.7rem;
-    top: 0.2rem;
-  }
-
-  .checkbox > input:active {
-    border: 2px solid #34495e;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 </style>
