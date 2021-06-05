@@ -63,16 +63,13 @@
         <div class="item-info">
           <div class="item-text">
             <div class="item-details">
-              <h2>{i + 1}. {name}</h2>
-              <span style="white-space: pre-line">{info}</span>
-              <!-- <p>{titleCase(info)}</p> -->
+              <h2 id="item-name">{i + 1}. {name}</h2>
+              <p style="white-space: pre-line">{info}</p>
             </div>
           </div>
-          <div class="img-container">
-            <a class="img-link" href={link}>
-              <img class="item-img" src={art} alt={name} />
-            </a>
-          </div>
+          <a class="img-link" href={link}>
+            <img class="item-img" src={art} alt={name} />
+          </a>
         </div>
       {/each}
     </div>
@@ -96,19 +93,21 @@
   .list-container {
     margin-left: auto;
     margin-right: auto;
-    display: flex;
     width: clamp(20rem, 70%, 40rem);
+    display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
 
   .item-info {
-    background: #282e2b;
-    padding: 1em;
-    margin: 0.25em;
+    background: var(--dark-2);
+    padding: 1rem;
+    margin: 0.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 10em;
+    min-height: 8rem;
     border-style: solid;
     border-radius: 50px;
   }
@@ -118,32 +117,58 @@
     text-align: left;
     width: 65%;
     height: 100%;
-    /* margin: auto; */
+    margin: auto;
+  }
+
+  #item-name {
+    margin: 0;
   }
 
   .item-details {
-    /* margin: 1.5em; */
-    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
   }
 
-  .img-container {
-    max-width: 40%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .img-link {
-    max-width: 100%;
-    max-height: 100%;
+    width: auto;
+    height: 100%;
+    float: right;
   }
 
   .item-img {
     border-radius: 10px;
-    width: 10rem;
-    /* max-width: 90%; */
-    /* max-height: 90%; */
+    width: auto;
+    max-width: 80%;
+    height: 100%;
+    float: right;
+    margin-right: 1rem;
+    position: relative;
+  }
+
+  /* Phone media query */
+  @media (max-width: 480px) {
+    .item-info {
+      flex-direction: column;
+      align-items: center;
+      /* width: 100%; */
+    }
+    .item-details {
+      display: block;
+      text-align: center;
+      width: 100%;
+      padding: 0;
+    }
+    .item-text {
+      display: flex;
+      text-align: left;
+      width: 100%;
+      height: 100%;
+      margin: auto;
+    }
+    .item-img {
+      margin: 0;
+      float: none;
+    }
   }
 </style>
