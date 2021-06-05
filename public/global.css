@@ -6,15 +6,15 @@ html, body {
 }
 
 :root{
-	--dark-1: #1e201f;
-	--dark-2: #282e2b;
-	--light-1: #1ed760;
-	--light-2: #7bcf99;
+	--dark-1: hsl(240, 17%, 10%);
+	--dark-2: hsl(240, 15%, 15%);
+	--light-1: hsl(141, 76%, 48%);
+	--light-2: hsl(141, 47%, 65%);
 }
 
 body {
-	color: #1ed760;
-	background-color: #1e201f;
+	color: var(--light-1);
+	background-color: var(--dark-1);
 	margin: 0;
 	padding: 8px;
 	box-sizing: border-box;
@@ -59,10 +59,10 @@ input:disabled {
 }
 
 button {
-	color: #1ed760;
+	color: var(--light-1);
 	padding: 0.75em;
 	border-radius: 2em;
-	border-color: #1ed760;
+	border-color: var(--light-1);
 	border-width: 0.12em;
 	background: none;
 	font-size: 1.25rem;
@@ -81,6 +81,6 @@ button:focus {
 }
 
 button:hover {
-	background-color: #1ed760;
+	background-color: var(--light-1);
 	color: #1e201f;
 }
