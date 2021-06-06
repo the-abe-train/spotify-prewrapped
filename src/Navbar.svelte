@@ -29,6 +29,13 @@
   let expanded = false;
   function collapseExpand() {
     expanded = !expanded;
+    // this.classList.toggle("change");
+    // const childArr = [...this.children]
+    // console.log(childArr);
+    // childArr.forEach((bar) => {
+    //   console.log(bar);
+    //   bar.classList.toggle("change");
+    // });
   }
 
   function collapse(e) {
@@ -36,19 +43,32 @@
     const classArr = [...classNodes];
     const isWelcomeBtn = classArr.indexOf("welcome-btn") >= 0;
     const isWelcomeMenu = classArr.indexOf("welcome-menu") >= 0;
-    if (!isWelcomeBtn && !isWelcomeMenu) {
+    const isWelcomeBurger = classArr.indexOf("welcome-burger") >= 0;
+    if (!isWelcomeBtn && !isWelcomeMenu && !isWelcomeBurger) {
       expanded = false;
     }
   }
+  let iw = window.innerWidth;
+  function handleResize() {
+    iw = innerWidth;
+  }
 </script>
 
-<svelte:window on:click={collapse} />
+<svelte:window on:click={collapse} on:resize={handleResize} />
 
 {#if user}
   <nav class="nav-area">
-    <button class="welcome-btn" on:click={collapseExpand}>
-      Welcome, {user.display_name.split(" ")[0]}!
-    </button>
+    {#if iw >= 480}
+      <button class="welcome-btn" on:click={collapseExpand}>
+        Welcome, {user.display_name.split(" ")[0]}!
+      </button>
+    {:else}
+      <button class="welcome-burger" on:click={collapseExpand}>
+        <div class="welcome-bar bar1" />
+        <div class="welcome-bar bar2" />
+        <div class="welcome-bar bar3" />
+      </button>
+    {/if}
     {#if expanded}
       <div class="welcome-menu">
         <a
@@ -92,26 +112,56 @@
   .welcome-btn {
     /* padding: 0.35rem 0.8rem 0.35rem 0.8rem; */
     padding: 0.5rem;
-    margin: 1rem 1rem 0 1rem;
+    margin: 1.5rem 1rem .25rem 1rem;
     border-radius: 1rem;
-    font-size: 1rem;
+    font-size: 1.25rem;
     height: 3rem;
   }
 
+  .welcome-burger {
+    display: inline-block;
+    cursor: pointer;
+    align-self: flex-end;
+    z-index: 1;
+    padding: 0.5rem;
+    margin: 0.1rem;
+    border: none;
+  }
+
+  .welcome-burger:hover {
+    background-color: var(--dark-1);
+    color: var(--light-1);
+  }
+
+  .welcome-bar {
+    width: 35px;
+    height: 3px;
+    background-color: var(--light-1);
+    margin: 6px 0;
+    transition: 0.4s;
+    /* float: right; */
+  }
+
+  .welcome-burger > * {
+    pointer-events: none;
+  }
+
+
   .welcome-menu {
-    background-color: #282e2b;
+    background-color: var(--dark-1);
     /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
     width: 100%;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    padding-bottom: 0.75rem;
+    border-radius: 1rem;
   }
 
   .welcome-menu a {
-    color: #1ed760;
+    color: var(--light-2);
+    background-color: var(--dark-2);
     padding: 0.75em;
-    margin: 0.75rem 1rem 0 1rem;
+    margin: 0.25rem .25rem;
     text-decoration: none;
     text-align: left;
     border-style: solid;
