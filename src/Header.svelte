@@ -10,11 +10,7 @@
 
 <div id="header">
   <div id="title">
-    <img
-      id="title-img"
-      src="images/spotify-logo.png"
-      alt="Spotify logo"
-    />
+    <img id="title-img" src="images/spotify-logo.png" alt="Spotify logo" />
     {#if iw >= 768}
       <h1 id="title-text">Spotify Prewrapped</h1>
     {:else}
@@ -24,7 +20,8 @@
   {#if !$token}
     <span id="subtitle">
       Ever wondered what it would be like to know what your top artists and
-      tracks are before the end of the year? Log in below and find out!
+      tracks are before the end of the year? Connect to Spotify below and find
+      out!
     </span>
   {/if}
 </div>

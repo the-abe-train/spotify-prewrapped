@@ -2,12 +2,12 @@ html, body {
 	/* position: relative; */
 	width: 100%;
 	min-height: 100% !important;
-    height: 100%;
+	height: 100%;
 }
 
-:root{
-	--dark-1: hsl(240, 17%, 10%);
-	--dark-2: hsl(240, 15%, 15%);
+:root {
+	--dark-1: hsl(240, 18%, 11%);
+	--dark-2: hsl(240, 15%, 16%);
 	--light-1: hsl(141, 76%, 48%);
 	--light-2: hsl(141, 47%, 65%);
 }
@@ -18,8 +18,8 @@ body {
 	margin: 0;
 	padding: 8px;
 	box-sizing: border-box;
-	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif; 
-	width: 100%;	
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -27,7 +27,7 @@ body {
 }
 
 a {
-	color: rgb(0,100,200);
+	color: rgb(0, 100, 200);
 	text-decoration: none;
 }
 
@@ -36,7 +36,7 @@ a:hover {
 }
 
 a:visited {
-	color: rgb(0,80,160);
+	color: rgb(0, 80, 160);
 }
 
 label {
@@ -66,6 +66,7 @@ button {
 	border-width: 0.12em;
 	background: none;
 	font-size: 1.25rem;
+	cursor: pointer;
 }
 
 button:disabled {
@@ -73,14 +74,39 @@ button:disabled {
 }
 
 button:not(:disabled):active {
-	background-color: #ddd;
+	background-color: var(--light-2);
 }
 
 button:focus {
-	border-color: #666;
+	border-color: var(--light-1);
 }
 
 button:hover {
 	background-color: var(--light-1);
 	color: #1e201f;
+}
+
+.highlight {
+	color: var(--dark-1);
+	background-color: var(--light-1);
+}
+
+/* Rotate first bar */
+
+.change .bar1 {
+	-webkit-transform: rotate(-45deg) translate(-6px, 6px);
+	transform: rotate(-45deg) translate(-6px, 6px);
+}
+
+/* Fade out the second bar */
+
+.change .bar2 {
+	opacity: 0;
+}
+
+/* Rotate last bar */
+
+.change .bar3 {
+	-webkit-transform: rotate(45deg) translate(-6px, -6px);
+	transform: rotate(45deg) translate(-6px, -6px);
 }
