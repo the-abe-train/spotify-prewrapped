@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { slide } from "svelte/transition";
+  import { slide, fly } from "svelte/transition";
   import { token, timeRange, tokenExpired } from "./stores.js";
 
   export let collectionType, collectionMap;
@@ -44,6 +44,15 @@
   let expanded = false;
   function collapse() {
     expanded = !expanded;
+    this.classList.toggle("highlight");
+  }
+
+  // transition stuf
+  let show = false;
+  let showMore = false;
+
+  function toggle() {
+    show ? (showMore = false) : (show = true);
   }
 </script>
 
@@ -58,21 +67,19 @@
   </button>
 
   {#if collection && expanded}
-    <div class="list-container" transition:slide>
-      {#each collection as { name, art, info, link }, i}
-        <div class="item-info">
-          <div class="item-text">
-            <div class="item-details">
-              <h2 id="item-name">{i + 1}. {name}</h2>
-              <p style="white-space: pre-line">{info}</p>
-            </div>
+    {#each collection as { name, art, info, link }, i}
+      <div class="list-container" transition:slide>
+        <div class="item-container">
+          <div class="item-details">
+            <h2 class="item-name">{i + 1}. {name}</h2>
+            <p class="item-info" style="white-space: pre-line">{info}</p>
           </div>
           <a class="img-link" href={link}>
             <img class="item-img" src={art} alt={name} />
           </a>
         </div>
-      {/each}
-    </div>
+      </div>
+    {/each}
   {/if}
 </div>
 
@@ -100,47 +107,44 @@
     height: 100%;
   }
 
-  .item-info {
+  .item-container {
     background: var(--dark-2);
     padding: 1rem;
     margin: 0.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 8rem;
+    height: clamp(8rem, auto, 10rem);
     border-style: solid;
-    border-radius: 50px;
+    border-color: var(--light-2);
+    border-radius: 2rem;
+    border-width: 0.1rem;
   }
 
-  .item-text {
-    display: flex;
-    text-align: left;
-    width: 65%;
-    height: 100%;
-    margin: auto;
-  }
-
-  #item-name {
+  .item-name {
     margin: 0;
   }
 
   .item-details {
+    color: var(--light-2);
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    margin: auto;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 0 1rem;
   }
 
-  .img-link {
-    width: auto;
-    height: 100%;
-    float: right;
+  .item-info {
+    font-size: 1.2rem;
   }
 
   .item-img {
     border-radius: 10px;
     width: auto;
-    max-width: 80%;
-    height: 100%;
+    max-width: 70%;
+    max-height: 70%;
     float: right;
     margin-right: 1rem;
     position: relative;
@@ -148,23 +152,18 @@
 
   /* Phone media query */
   @media (max-width: 480px) {
-    .item-info {
+    .item-container {
       flex-direction: column;
       align-items: center;
       /* width: 100%; */
     }
     .item-details {
-      display: block;
-      text-align: center;
-      width: 100%;
-      padding: 0;
-    }
-    .item-text {
       display: flex;
-      text-align: left;
       width: 100%;
       height: 100%;
+      text-align: center;
       margin: auto;
+      padding: 0;
     }
     .item-img {
       margin: 0;
