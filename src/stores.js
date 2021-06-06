@@ -21,6 +21,6 @@ export const appUrl = readable(null, function start(set) {
   // set("http://localhost:5000");
 })
 
-export const timeRange = writable('long_term');
+export const timeRange = writable('medium_term');
 
 export const tokenExpired = writable(false);
