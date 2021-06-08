@@ -47,18 +47,17 @@
     {/if}
   </form>
 
-  {#if $timeRange == "long_term"}
+  {#if $timeRange == "short_term"}
     <p class="timeframe-description">
-      Calculated from several years of data and including all new data as it
-      becomes available.
+      Most played artists and tracks from approximately the last 4 weeks.
     </p>
   {:else if $timeRange == "medium_term"}
     <p class="timeframe-description">
       Most played artists and tracks from approximately the last 6 months.
     </p>
-  {:else if $timeRange == "short_term"}
+  {:else if $timeRange == "long_term"}
     <p class="timeframe-description">
-      Most played artists and tracks from approximately the last 4 weeks.
+      Most played artists and tracks from the last several years.
     </p>
   {/if}
 </div>
@@ -70,7 +69,7 @@
     border-radius: 2rem;
     font-size: 1.25rem;
     margin: 1.5rem auto;
-    width: clamp(1rem, 85%, 50rem);
+    width: clamp(1rem, 85%, 45rem);
     border-style: solid;
     border-color: var(--light-2);
     border-radius: 2rem;
@@ -78,8 +77,6 @@
   }
 
   .timeframe-description {
-    /* background-color: var(--dark-2); */
-    /* color: var(--light-2); */
     padding: 1.5rem;
     margin: 0;
   }
@@ -106,6 +103,7 @@
   }
 
   .radio-toolbar label {
+    cursor: pointer;
     display: inline-block;
     background-color: var(--dark-2);
     padding: 1rem 2rem;
