@@ -29,13 +29,6 @@
   let expanded = false;
   function collapseExpand() {
     expanded = !expanded;
-    // this.classList.toggle("change");
-    // const childArr = [...this.children]
-    // console.log(childArr);
-    // childArr.forEach((bar) => {
-    //   console.log(bar);
-    //   bar.classList.toggle("change");
-    // });
   }
 
   function collapse(e) {
@@ -81,17 +74,17 @@
           ></a
         >
         <a
-          href="https://github.com/the-abe-train"
+          href="https://github.com/the-abe-train/spotify-prewrapped"
           target="_blank"
           rel="noopener noreferrer"
           transition:slide
           ><i class="fab fa-github" /><span class="welcome-option"
-            >Meet the Developer</span
+            >Check out the code</span
           ></a
         >
         <a href={$appUrl} transition:slide>
           <i class="fas fa-sign-out-alt" />
-          <span class="welcome-option">Logout</span>
+          <span class="welcome-option">Disconnect</span>
         </a>
       </div>
     {/if}
@@ -107,12 +100,14 @@
     display: flex;
     flex-direction: column;
     width: 15rem;
+    padding: 1rem;
   }
 
   .welcome-btn {
     /* padding: 0.35rem 0.8rem 0.35rem 0.8rem; */
-    padding: 0.5rem;
-    margin: 1.5rem 1rem .25rem 1rem;
+    padding: 0;
+    /* margin: 1.5rem 1rem .25rem 1rem; */
+    width: auto;
     border-radius: 1rem;
     font-size: 1.25rem;
     height: 3rem;
