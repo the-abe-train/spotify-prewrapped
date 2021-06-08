@@ -27,7 +27,7 @@
     state,
   });
   $: loginLink = url + params;
-  $: console.log(rememberMe);
+  // $: console.log(process.env.NODE_ENV);
 </script>
 
 {#if !$token}
