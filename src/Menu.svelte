@@ -68,7 +68,7 @@
     color: var(--light-2);
     border-radius: 2rem;
     font-size: 1.25rem;
-    margin: 1.5rem auto 1.75rem auto;
+    margin: 1.5rem auto .25rem auto;
     width: clamp(1rem, 85%, 45rem);
     border-style: solid;
     border-color: var(--light-2);
@@ -77,7 +77,8 @@
   }
 
   .timeframe-description {
-    padding: 1.5rem;
+    padding:.5rem 1.5rem 1.75rem 1.5rem;
+    
     margin: 0;
   }
 

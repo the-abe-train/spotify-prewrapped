@@ -77,11 +77,12 @@
 
   /* Phone media query */
   @media (max-width: 480px) {
-    #header {
-      margin-top: 2rem;
+    #title {
+      margin: 2.5rem auto 0 auto;
     }
     #title-text {
       font-size: 2.5em;
+      margin: 1rem;
     }
     #subtitle {
       width: 20rem;

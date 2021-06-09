@@ -27,7 +27,6 @@
     state,
   });
   $: loginLink = url + params;
-  // $: console.log(process.env.NODE_ENV);
 </script>
 
 {#if !$token}
@@ -49,7 +48,7 @@
 {/if}
 
 {#if $tokenExpired}
-  <section>
+  <section class="expired-token">
     <p>Token expired! Please log out and log back in again.</p>
     <a href={$appUrl}>
       <button>Logout</button>
@@ -104,5 +103,9 @@
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+  }
+
+  .expired-token {
+    font-size: 1.25rem;
   }
 </style>
