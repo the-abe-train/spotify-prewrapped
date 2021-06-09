@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
-  import { slide, fly } from "svelte/transition";
+  import { slide } from "svelte/transition";
+  import { sineInOut } from "svelte/easing";
   import { token, timeRange, tokenExpired } from "./stores.js";
 
   export let collectionType, collectionMap;
@@ -47,28 +48,34 @@
     this.classList.toggle("highlight");
   }
 
-  // transition stuf
-  let show = false;
-  let showMore = false;
-
-  function toggle() {
-    show ? (showMore = false) : (show = true);
+  // Rotate list expand/collapse icon
+  const duration = 500;
+  function rotate(node, { delay = 0, duration }) {
+    return {
+      delay,
+      duration,
+      css: (t) => {
+        const eased = sineInOut(t);
+        return `transform: rotate(${eased * 180}deg);`
+      },
+    };
   }
 </script>
 
 <div class="items-container">
   <button class="expand-btn" on:click={collapse}>
-    <span class="expand-btn-name">{caps(collectionType)}</span>
+    <!-- <span class="expand-btn-name">{caps(collectionType)}</span> -->
+    {caps(collectionType)}
     {#if !expanded}
-      <span class="expand-btn-icon">+</span>
+      <div class="expand-btn-icon" in:rotate="{{duration}}"/>
     {:else}
-      <span class="expand-btn-icon">-</span>
+      <div class="collapse-btn-icon"  in:rotate="{{duration}}"/>
     {/if}
   </button>
 
   {#if collection && expanded}
     {#each collection as { name, art, info, link }, i}
-      <div class="list-container" transition:slide>
+      <div class="list-container" transition:slide="{{duration}}">
         <div class="item-container">
           <div class="item-details">
             <h2 class="item-name">{i + 1}. {name}</h2>
@@ -88,13 +95,28 @@
     width: clamp(20rem, 70%, 45rem);
     font-size: 2rem;
     font-weight: 500;
-    margin-top: 1em;
+    margin: 1.75rem auto;
     border-style: solid;
+    padding-left: 4.6rem;
+    /* display: flex; */
   }
 
-  .expand-btn-icon {
+  .expand-btn-icon,
+  .collapse-btn-icon {
     float: right;
-    padding-bottom: 0.2rem;
+    padding: 0.8rem;
+    /* padding-right: 0; */
+    transform: rotate(180deg);
+    font-size: 1.4rem;
+    font-weight: 1000;
+  }
+
+  .expand-btn-icon::after {
+    content: "\2227";
+  }
+
+  .collapse-btn-icon::after {
+    content: "\2228";
   }
 
   .list-container {
