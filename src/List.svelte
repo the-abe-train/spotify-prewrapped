@@ -1,13 +1,13 @@
 <script>
-  import { onMount } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
   import { slide } from "svelte/transition";
   import { sineInOut } from "svelte/easing";
   import { token, timeRange, tokenExpired } from "./stores.js";
 
   export let collectionType, collectionMap;
 
+  // Fetch collection data (artists and tracks)
   let collection;
-
   async function getCollection() {
     const accessToken = $token;
 
@@ -27,7 +27,6 @@
 
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
         collection = data.items.map(collectionMap);
       } else {
         tokenExpired.set(true);
@@ -49,14 +48,17 @@
   }
 
   // Rotate list expand/collapse icon
-  const duration = 500;
+  let fullPath = true;
+  afterUpdate(() => (fullPath = false));
+  const duration = 750;
   function rotate(node, { delay = 0, duration }) {
     return {
       delay,
       duration,
-      css: (t) => {
-        const eased = sineInOut(t);
-        return `transform: rotate(${eased * 180}deg);`
+      css: (t, u) => {
+        const eased = sineInOut(u);
+        const path = fullPath ? 360 : 180;
+        return `transform: rotate(${eased * path}deg);`;
       },
     };
   }
@@ -64,18 +66,17 @@
 
 <div class="items-container">
   <button class="expand-btn" on:click={collapse}>
-    <!-- <span class="expand-btn-name">{caps(collectionType)}</span> -->
     {caps(collectionType)}
     {#if !expanded}
-      <div class="expand-btn-icon" in:rotate="{{duration}}"/>
+      <div class="expand-btn-icon" in:rotate={{ duration }} />
     {:else}
-      <div class="collapse-btn-icon"  in:rotate="{{duration}}"/>
+      <div class="collapse-btn-icon" in:rotate={{ duration }} />
     {/if}
   </button>
 
   {#if collection && expanded}
     {#each collection as { name, art, info, link }, i}
-      <div class="list-container" transition:slide="{{duration}}">
+      <div class="list-container" transition:slide={{ duration }}>
         <div class="item-container">
           <div class="item-details">
             <h2 class="item-name">{i + 1}. {name}</h2>
@@ -95,28 +96,25 @@
     width: clamp(20rem, 70%, 45rem);
     font-size: 2rem;
     font-weight: 500;
-    margin: 1.75rem auto;
+    margin: 3rem auto 0.25rem auto;
     border-style: solid;
     padding-left: 4.6rem;
-    /* display: flex; */
   }
 
   .expand-btn-icon,
   .collapse-btn-icon {
     float: right;
     padding: 0.8rem;
-    /* padding-right: 0; */
-    transform: rotate(180deg);
     font-size: 1.4rem;
     font-weight: 1000;
   }
 
   .expand-btn-icon::after {
-    content: "\2227";
+    content: "\2228";
   }
 
   .collapse-btn-icon::after {
-    content: "\2228";
+    content: "\2227";
   }
 
   .list-container {
@@ -132,7 +130,7 @@
   .item-container {
     background: var(--dark-2);
     padding: 1rem;
-    margin: 0.25rem;
+    margin: 0.3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -147,30 +145,21 @@
     color: var(--light-2);
     text-align: left;
     width: 100%;
-    /* height: clamp(8rem, 100%, 10rem); */
-    /* height: 100%; */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     padding: 0 1rem;
     justify-content: space-evenly;
-    /* flex: 2; */
   }
 
   .item-name {
     margin: 0;
-    /* flex: 0; */
   }
 
   .item-info {
     font-size: 1.2rem;
     margin: 1.5rem 0;
-    /* flex: 0; */
   }
-
-  /* .img-link {
-    flex: 1;
-  } */
 
   .item-img {
     border-radius: 10px;
@@ -178,15 +167,17 @@
     float: right;
     margin: 0 1rem;
     position: relative;
-    /* flex: 1; */
   }
 
   /* Phone media query */
   @media (max-width: 670px) {
+    .expand-btn {
+      width: clamp(20rem, 70%, 45rem);
+      margin: 2rem auto 0.25rem auto;
+    }
     .item-container {
       flex-direction: column;
       align-items: center;
-      /* width: 100%; */
     }
     .item-details {
       display: flex;
@@ -203,7 +194,6 @@
     .item-info {
       font-size: 1.2rem;
       margin: 1rem 0 2rem 0;
-      /* flex: 0; */
     }
   }
 </style>
