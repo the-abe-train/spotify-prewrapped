@@ -68,7 +68,7 @@
     color: var(--light-2);
     border-radius: 2rem;
     font-size: 1.25rem;
-    margin: 1.5rem auto;
+    margin: 1.5rem auto 1.75rem auto;
     width: clamp(1rem, 85%, 45rem);
     border-style: solid;
     border-color: var(--light-2);

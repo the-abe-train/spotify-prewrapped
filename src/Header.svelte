@@ -40,10 +40,8 @@
   #title-text {
     color: var(--light-1);
     font-size: 3.5em;
-    font-weight: 1000;
     margin-bottom: 2rem;
   }
-
   #title-img {
     width: 100px;
     height: 100px;
@@ -51,13 +49,17 @@
   }
   #subtitle {
     display: block;
-    width: 40rem;
+    width: clamp(1rem, 85%, 45rem);
     margin: auto;
-    margin-top: 0.5rem;
-    background-color: var(--dark-2);
+    margin-top: 1rem;
     padding: 1rem;
-    border-radius: 1rem;
+    font-size: 1.2rem;
     color: var(--light-2);
+    background-color: var(--dark-2);
+    border-style: solid;
+    border-color: var(--light-2);
+    border-radius: 2rem;
+    border-width: 0.1rem;
   }
 
   /* Tablet media query */
@@ -83,6 +85,8 @@
     }
     #subtitle {
       width: 20rem;
+      font-size: 1rem;
+      margin: 0 auto;
     }
   }
 </style>
