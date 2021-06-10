@@ -3,6 +3,7 @@
   import { slide } from "svelte/transition";
   import { sineInOut } from "svelte/easing";
   import { token, timeRange, tokenExpired } from "./stores.js";
+  
 
   export let collectionType, collectionMap;
 
@@ -44,7 +45,6 @@
   let expanded = false;
   function collapse() {
     expanded = !expanded;
-    this.classList.toggle("highlight");
   }
 
   // Rotate list expand/collapse icon
@@ -58,14 +58,18 @@
       css: (t, u) => {
         const eased = sineInOut(u);
         const path = fullPath ? 360 : 180;
-        return `transform: rotate(${eased * path}deg);`;
+        return `transform: scale(1.25) rotate(${eased * path}deg);`;
       },
     };
   }
 </script>
 
-<div class="items-container">
-  <button class="expand-btn" on:click={collapse}>
+<div class="items-container" >
+  <button
+    class={!expanded ? "expand-btn" : "expand-btn highlight"}
+    on:click={collapse}
+  >
+    <div class="placeholder" />
     {caps(collectionType)}
     {#if !expanded}
       <div class="expand-btn-icon" in:rotate={{ duration }} />
@@ -98,15 +102,20 @@
     font-weight: 500;
     margin: 3rem auto 0.25rem auto;
     border-style: solid;
-    padding-left: 4.6rem;
   }
 
   .expand-btn-icon,
-  .collapse-btn-icon {
+  .collapse-btn-icon,
+  .placeholder {
     float: right;
-    padding: 0.8rem;
-    font-size: 1.4rem;
-    font-weight: 1000;
+    padding: 0.25rem;
+    margin: auto 0;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    transform: scale(1.25);
+  }
+  .placeholder {
+    float: left;
   }
 
   .expand-btn-icon::after {
@@ -117,6 +126,20 @@
     content: "\2227";
   }
 
+  .placeholder::after {
+    content: "\2227";
+    color: var(--dark-1);
+  }
+  button:hover .placeholder::after {
+    color: var(--light-1);
+  }
+  .highlight .placeholder {
+    color: var(--light-1);
+  }
+
+  .highlight .placeholder::after {
+    color: var(--light-1);
+  }
   .list-container {
     margin-left: auto;
     margin-right: auto;
