@@ -133,13 +133,11 @@
     background-color: var(--light-1);
     margin: 6px 0;
     transition: 0.4s;
-    /* float: right; */
   }
 
   .welcome-burger > * {
     pointer-events: none;
   }
-
 
   .welcome-menu {
     background-color: var(--dark-1);
@@ -155,7 +153,7 @@
     color: var(--light-2);
     background-color: var(--dark-2);
     padding: 0.75em;
-    margin: 0.25rem .25rem;
+    margin: 0.25rem 0.25rem;
     text-decoration: none;
     text-align: left;
     border-style: solid;

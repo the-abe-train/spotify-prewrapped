@@ -51,7 +51,7 @@
     display: block;
     width: clamp(1rem, 85%, 45rem);
     margin: auto;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     padding: 1rem;
     font-size: 1.2rem;
     color: var(--light-2);
@@ -65,13 +65,14 @@
   /* Tablet media query */
   @media (max-width: 768px) and (min-width: 481px) {
     #header {
-      margin-top: 2rem;
+      margin: 4rem auto 0 auto;
     }
     #title-text {
       font-size: 3.5rem;
     }
     #subtitle {
       width: 25rem;
+      margin: 1.1rem auto;
     }
   }
 
@@ -85,9 +86,12 @@
       margin: 1rem;
     }
     #subtitle {
-      width: 20rem;
+      width: 80%;
       font-size: 1rem;
-      margin: 0 auto;
+      margin: 1.1rem auto;
+    }
+    #title-img {
+      padding: 0;
     }
   }
 </style>

@@ -32,7 +32,7 @@
 {#if !$token}
   <div id="login">
     <a href={loginLink}>
-      <button>Connect to Spotify</button>
+      <button class="login-btn">Connect to Spotify</button>
     </a>
     <br />
     <div id="checkbox-container">
@@ -63,7 +63,11 @@
   }
 
   #login {
-    margin-top: 2.5rem;
+    margin: 2.5rem auto;
+  }
+
+  .login-btn {
+    margin: .5rem auto;
   }
 
   #checkbox-container {
