@@ -73,7 +73,7 @@
           ></a
         >
         <a
-          href="https://github.com/the-abe-train/spotify-prewrapped"
+          href="https://github.com/isenkasa/spotify-dashboard"
           target="_blank"
           rel="noopener noreferrer"
           transition:slide

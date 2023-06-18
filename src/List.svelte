@@ -2,7 +2,7 @@
   import { afterUpdate, onMount } from "svelte";
   import { slide } from "svelte/transition";
   import { sineInOut } from "svelte/easing";
-  import { token, timeRange, tokenExpired } from "./stores.js";
+  import { token, timeRange, limit, tokenExpired } from "./stores.js";
   
 
   export let collectionType, collectionMap;
@@ -15,7 +15,7 @@
     const url = new URL(`https://api.spotify.com/v1/me/top/${collectionType}?`);
     const params = new URLSearchParams({
       time_range: $timeRange,
-      limit: 10,
+      limit: $limit,
       offset: 0,
     });
 

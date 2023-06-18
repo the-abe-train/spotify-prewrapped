@@ -16,10 +16,12 @@ export const token = readable(null, function start(set) {
 })
 
 export const appUrl = readable(null, function start(set) {
-  set("https://spotify-prewrapped.vercel.app/");
-  // set("http://localhost:5000");
+  //set("https://spotify-prewrapped.vercel.app/");
+  set("http://localhost:5000");
 })
 
 export const timeRange = writable('medium_term');
+
+export const limit = writable(10)
 
 export const tokenExpired = writable(false);

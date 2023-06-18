@@ -12,9 +12,9 @@
   <div id="title">
     <img id="title-img" src="images/spotify-logo.png" alt="Spotify logo" />
     {#if iw >= 768}
-      <h1 id="title-text">Spotify Prewrapped</h1>
+      <h1 id="title-text">Spotify Dashboard</h1>
     {:else}
-      <h1 id="title-text">Spotify <br /> Prewrapped</h1>
+      <h1 id="title-text">Spotify <br /> Dashboard</h1>
     {/if}
   </div>
   {#if !$token}

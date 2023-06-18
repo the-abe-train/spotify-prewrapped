@@ -1,5 +1,5 @@
 <script>
-  import { timeRange } from "./stores.js";
+  import { timeRange, limit } from "./stores.js";
   let iw = window.innerWidth;
   function handleResize() {
     iw = innerWidth;
@@ -37,6 +37,15 @@
           bind:group={$timeRange}
         />
         <label for="long_term">Long</label>
+      </div>
+      <div>
+        <label for="limit">Count (max 50):</label>
+        <input
+          id="limit"
+          type="number"
+          max=50
+          bind:value={$limit}
+        />
       </div>
     {:else}
       <select id="time_frames" name="time_frames" bind:value={$timeRange}>
