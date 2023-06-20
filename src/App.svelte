@@ -6,9 +6,12 @@
   import Menu from "./Menu.svelte";
   import Footer from "./Footer.svelte";
   import { timeRange, token, tokenExpired } from "./stores.js";
+    import GenreList from "./GenreList.svelte";
 
-  const uppers = ["uk", "r&b", "nyc"];
+  const uppers = ["uk", "r&b", "nyc", "la", "dfw", "atl"];
   const lowers = ["and"];
+
+  let genreMap = new Map()
 
   function titleCase(arr) {
     // Max number of genres allowed in string is 5 so it doesn't get crowded
@@ -33,6 +36,7 @@
           })
           .join(" ");
         if (str === "") {
+          genreMap.set(fixedGenre, (genreMap.get(fixedGenre)) ? (genreMap.get(fixedGenre) + 1) : 1)
           return fixedGenre;
         } else {
           return str + ", " + fixedGenre;
@@ -58,6 +62,10 @@
       link: item.external_urls.spotify,
     };
   };
+
+  const clearGenreMap = () => {
+    genreMap.clear()
+  }
 </script>
 
 <main>
@@ -70,10 +78,13 @@
   {#key $timeRange}
     {#if $token && !$tokenExpired}
       <Menu />
-      <List collectionType="artists" collectionMap={artistMap} />
+      <GenreList genreMap={genreMap} />
+      <List collectionType="artists" collectionMap={artistMap} on:change={clearGenreMap()} />
       <List collectionType="tracks" collectionMap={tracksMap} />
     {/if}
   {/key}
+
+  <Footer />
 </main>
 
 <!-- <Footer /> -->
