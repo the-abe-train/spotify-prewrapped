@@ -16,7 +16,6 @@ export const token = readable(null, function start(set) {
 })
 
 export const appUrl = readable(null, function start(set) {
-  //set("https://spotify-prewrapped.vercel.app/");
   set("http://localhost:5000");
 })
 

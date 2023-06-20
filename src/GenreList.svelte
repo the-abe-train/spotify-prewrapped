@@ -151,14 +151,6 @@
     margin: 1.5rem 0;
   }
 
-  .item-img {
-    border-radius: 10px;
-    width: clamp(1rem, 100%, 10rem);
-    float: right;
-    margin: 0 1rem;
-    position: relative;
-  }
-
   /* Phone media query */
   @media (max-width: 670px) {
     .expand-btn {
@@ -176,10 +168,6 @@
       text-align: center;
       margin: auto;
       padding: 0;
-    }
-    .item-img {
-      margin: 0;
-      float: none;
     }
     .item-info {
       font-size: 1.2rem;
