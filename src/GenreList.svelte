@@ -2,14 +2,11 @@
   import { afterUpdate, onMount } from "svelte";
   import { slide } from "svelte/transition";
   import { sineInOut } from "svelte/easing";
-  import { token, timeRange, limit, tokenExpired } from "./stores.js";
-  
+  import GenrePie from "./GenrePie.svelte";
 
   export let genreMap;
 
   const genreArr = [...genreMap.entries()].sort((a, b) => b[1] - a[1])
-
-  console.log('genreArr:', genreArr)
 
   // Collapsable menu
   let expanded = false;
@@ -49,6 +46,13 @@
   </button>
 
   {#if genreArr && expanded}
+    <div class="list-container" transition:slide={{ duration }}>
+      <div class="item-container">
+        <div class="item-details">
+          <GenrePie genreData={genreArr}/>
+        </div>
+      </div>
+    </div>
     {#each genreArr as genre}
       <div class="list-container" transition:slide={{ duration }}>
         <div class="item-container">

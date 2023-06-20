@@ -6,7 +6,7 @@
   import Menu from "./Menu.svelte";
   import Footer from "./Footer.svelte";
   import { timeRange, token, tokenExpired } from "./stores.js";
-    import GenreList from "./GenreList.svelte";
+  import GenreList from "./GenreList.svelte";
 
   const uppers = ["uk", "r&b", "nyc", "la", "dfw", "atl"];
   const lowers = ["and"];

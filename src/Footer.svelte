@@ -6,10 +6,6 @@
     <a href="https://svelte.dev/">
         <img src="images/cib-svelte.svg" alt="Svelte logo" />
     </a>
-    , hosted by
-    <a href="https://vercel.com/">
-        <img src="images/vercel-logo.svg" alt="Vercel logo" />
-    </a>
 </footer>
 
 <style>
