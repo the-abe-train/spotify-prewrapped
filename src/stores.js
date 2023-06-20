@@ -16,7 +16,7 @@ export const token = readable(null, function start(set) {
 })
 
 export const appUrl = readable(null, function start(set) {
-  set("http://localhost:5000");
+  set("https://spotify-prewrapped-git-fork-isenkasa-add-charts-the-abe-train.vercel.app/");
 })
 
 export const timeRange = writable('medium_term');
